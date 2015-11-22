@@ -1,13 +1,9 @@
 
 
 SELECT
-  ItemNo
-
-UNNEST(ARRAY['Item1','Item2','Item3','Item4']) AS ItemName
-
-UNNEST(ARRAY[Item1,Item2,Item3,Item4]) AS Amount
-
-FROM tblUnPivotExample
-
-ORDER BY ItemNo
+	fldname,
+UNNEST(ARRAY['extracted condensate','extracted gas','extracted ngl','extracted oil','remaining condensate','remaining gas','remaining ngl','remaining oil']) AS ItemName,
+UNNEST(ARRAY[fldrecoverablecondensate-fldremainingcondensate,fldrecoverablegas-fldremaininggas,fldrecoverablengl-fldremainingngl,fldrecoverableoil-fldremainingoil,fldremainingcondensate,fldremaininggas,fldremainingngl,fldremainingoil]) AS Amount
+FROM field_reserves
+ORDER BY fldname
 
